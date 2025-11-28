@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- SEO Optimization -->
+    <title>Hyrahmo | Chess Strategy, Live Streams & Analysis</title>
+    <meta name="description" content="Official Hub for Hyrahmo. Live Chess Analysis, PGN database, and Python Product Consulting. Designed for seamless user experience on all devices.">
+    <meta name="keywords" content="Chess Streamer, Lichess, Chess.com, Twitch, Data Analysis, Python Freelancer, Chess Strategy, Hyrahmo">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- СТИЛИ: MINIMALIST PRODUCT DESIGN (DARK/LIGHT) -->
+    <style>
+        :root {
+            /* Базовые темные цвета (по умолчанию) */
+            --dark-bg: #101010;
+            --dark-text: #ffffff;
+            --primary-accent: #9370DB; /* Medium Purple/Twitch-like */
+            --secondary-accent: #FFD700; /* Gold for Donation */
+            --card-bg: #1d1d1d;
+            --line-color: #333333;
+            --soft-text: #b0b0b0;
+            
+            /* Переменные текущей темы */
+            --current-bg: var(--dark-bg);
+            --current-text: var(--dark-text);
+            --current-card-bg: var(--card-bg);
+            --current-line: var(--line-color);
+        }
+
+        /* LIGHT MODE (Класс добавляется JS) */
+        body.light {
+            --current-bg: #f5f5f5;
+            --current-text: #111111;
+            --current-card-bg: #ffffff;
+            --current-line: #e0e0e0;
+            --soft-text: #666666;
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- ОСНОВА --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--current-bg);
+            color: var(--current-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex; flex-direction: column; align-items: center;
+            padding-bottom: 90px; transition: background-color 0.3s, color 0.3s;
+            line-height: 1.4; overflow-x: hidden;
+        }
+        .container { width: 100%; max-width: 600px; padding: 0 15px; }
+
+        /* --- HEADER --- */
+        .header { text-align: center; padding: 30px 0; border-bottom: 1px solid var(--current-line); margin-bottom: 30px; }
+        .avatar {
+            width: 90px; height: 90px; margin: 0 auto 10px;
+            background-image: url('avatar.png'); background-size: cover; border-radius: 50%; 
+            border: 3px solid var(--primary-accent);
+        }
+        h1 { font-size: clamp(2rem, 6vw, 2.5rem); margin: 0; color: var(--current-text); }
+        .role { color: var(--soft-text); font-weight: 500; font-size: 0.9rem; margin-top: 5px; }
+
+        /* --- КНОПКИ (GRID) --- */
+        .section-title {
+            width: 100%; border-bottom: 1px solid var(--current-line);
+            color: var(--primary-accent); font-size: 1rem; margin-bottom: 15px; padding-bottom: 5px;
+            font-weight: 600; text-transform: uppercase;
+        }
+        .grid-links { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
+            gap: 12px; width: 100%; margin-bottom: 30px; 
+        }
+        .link-card {
+            background: var(--current-card-bg); border: 1px solid var(--current-line); padding: 15px 10px;
+            text-align: left; text-decoration: none; border-radius: 8px; 
+            color: var(--current-text); transition: border-color 0.15s, background-color 0.3s, transform 0.1s;
+            box-shadow: var(--card-shadow, none);
+        }
+        .link-card:hover { border-color: var(--primary-accent); background: var(--current-bg); transform: translateY(-2px); }
+        .link-title { display: block; font-weight: 600; font-size: 0.95rem; }
+        .link-desc { display: block; color: var(--soft-text); font-size: 0.75rem; margin-top: 5px; }
+
+        /* --- LIVE BUTTON (Главный CTA) --- */
+        .btn-live {
+            width: 100%; padding: 18px; background: var(--primary-accent); color: white;
+            text-align: center; font-weight: bold; font-size: 1.1rem; margin-bottom: 20px;
+            border-radius: 8px; text-decoration: none; display: block;
+        }
+        .btn-live:hover { background: #7c4cdd; }
+        .btn-email-style { border: 1px solid var(--current-line); background: transparent; color: var(--primary-accent); }
+        .btn-email-style:hover { background: var(--current-line); }
+
+        /* --- STICKY DONATION BUTTON --- */
+        .sticky-btn {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: var(--secondary-accent); color: var(--dark-bg); padding: 15px 0; 
+            text-align: center; text-decoration: none; font-weight: bold; font-size: 1rem;
+            z-index: 100;
+        }
+
+        /* --- ТЕМНЫЙ / СВЕТЛЫЙ Переключатель --- */
+        #theme-toggle { position: absolute; top: 20px; right: 20px; cursor: pointer; color: var(--soft-text); font-size: 1.5rem; transition: color 0.3s; }
+        .footer-copy { font-size: 0.7rem; color: var(--soft-text); margin-top: 20px; }
+    </style>
+</head>
+<body class="dark">
+
+    <div id="theme-toggle">💡</div>
+
+    <div class="container">
+        
+        <!-- HEADER -->
+        <div class="header">
+            <div class="avatar"></div>
+            <h1>Hyrahmo Strategy</h1>
+            <div class="role">Live Chess Analysis & Strategy Consulting</div>
+        </div>
+
+        <!-- CALLS TO ACTION -->
+        <div class="main-cta">
+            <!-- LIVE STREAM -->
+            <a href="https://twitch.tv/hyrahmo" target="_blank" class="btn-live">
+                🔴 Watch Live Stream Now
+            </a>
+            <!-- EMAIL Contact -->
+            <a href="mailto:hyrahmo.business@gmail.com?subject=Private_Consulting_Inquiry" class="btn-live btn-email-style">
+                Email for Private Consultation
+            </a>
+        </div>
+
+        <!-- PLATFORMS (Streaming & Gaming) -->
+        <div class="section-title">Streaming & Gaming Platforms</div>
+        <div class="grid-links">
+            <!-- 1. Twitch (VODs) -->
+            <a href="https://twitch.tv/hyrahmo/videos" class="link-card">
+                <span class="link-title">Twitch VODs</span>
+                <span class="link-desc">Past Broadcasts</span>
+            </a>
+            <!-- 2. YouTube (VODs/Subs) -->
+            <a href="https://www.youtube.com/@hyrahmo" class="link-card">
+                <span class="link-title">YouTube</span>
+                <span class="link-desc">Game Replays & Tutorials</span>
+            </a>
+             <!-- 3. Discord -->
+            <a href="https://discord.gg/hyrahmo" class="link-card">
+                <span class="link-title">Discord</span>
+                <span class="link-desc">Community & Analysis</span>
+            </a>
+            <!-- 4. Twitter/X -->
+            <a href="https://twitter.com/hyrahmo" class="link-card">
+                <span class="link-title">X (Twitter)</span>
+                <span class="link-desc">Global Updates</span>
+            </a>
+        </div>
+        
+        <!-- CHESS & COMMUNITY -->
+        <div class="section-title">Chess & Strategy Hub</div>
+        <div class="grid-links">
+            <!-- 1. Lichess -->
+            <a href="https://lichess.org/@/hyrahmo" class="link-card">
+                <span class="link-title">Lichess</span>
+                <span class="link-desc">Bullet/Rapid</span>
+            </a>
+            <!-- 2. Chess.com -->
+            <a href="https://www.chess.com/member/hyrahmo" class="link-card">
+                <span class="link-title">Chess.com</span>
+                <span class="link-desc">Puzzles & PGNs</span>
+            </a>
+             <!-- 3. Reddit (r/chess) -->
+            <a href="https://www.reddit.com/r/chess" class="link-card">
+                <span class="link-title">Reddit (r/chess)</span>
+                <span class="link-desc">Strategy Discussions</span>
+            </a>
+            <!-- 4. Main Business Site (Seamless crossover) -->
+            <a href="https://cv.hyrahmo.ru" class="link-card" style="border-color: var(--primary-accent);">
+                <span class="link-title">PYTHON DEV SERVICES</span>
+                <span class="link-desc">Hire for Quant/Tech</span>
+            </a>
+        </div>
+
+
+        <div class="footer-copy">
+            &copy; 2025 Hyrahmo Systems. All Rights Reserved. | Site designed for maximum usability.
+        </div>
+    </div>
+
+    <!-- STICKY DONATION BUTTON -->
+    <a href="https://www.donationalerts.com/r/hyrahmo" class="sticky-btn">
+        SUPPORT THE ANALYST (DONATE)
+    </a>
+
+    <!-- JAVASCRIPT ДЛЯ АДАПТИВНОЙ ТЕМЫ -->
+    <script>
+        const body = document.body;
+        const toggle = document.getElementById('theme-toggle');
+        
+        function set_theme(theme) {
+            if (theme === 'light') {
+                body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        // Load theme from storage or system preference
+        const saved_theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        set_theme(saved_theme);
+        
+        // Toggle on click
+        toggle.addEventListener('click', () => {
+            const new_theme = body.classList.contains('light') ? 'dark' : 'light';
+            set_theme(new_theme);
+        });
+    </script>
+</body>
+</html>
